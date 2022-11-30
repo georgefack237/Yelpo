@@ -13,7 +13,7 @@
 
 ## 📸 ScreenShots
 
-| <img src="app/src/main/assets/shimmer_loading.png" width="400">  | <img src="assets/home_page.png" width="400">  |
-| <img src="/src/main/assets/search_found.png" width="400">  | <img src="src/main/assets/search_not_found.png" width="400">  |
+| <img src="app/src/main/assets/shimmer_loading.png" width="400">  | <img src="app/src/main/assets/home_page.png" width="400">  |
+| <img src="app/src/main/assets/search_found.png" width="400">  | <img src="app/src/main/assets/search_not_found.png" width="400">  |
 
 
