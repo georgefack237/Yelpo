@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Yelpo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/yellow</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
+
+    <style name="MovieApp.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/background_color_chip_state</item>
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/text_color_chip_state_list</item>
+    </style>
+
+    <style name="TextAppearance.MovieApp.Headline1" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/title_font</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="TextAppearance.MovieApp.Headline2" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">@dimen/title_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.MovieApp.Subtitle1" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/subtitle_font</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextAppearance.MovieApp.Subtitle2" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">@dimen/medium_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.MovieApp.Body1" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/grey_main</item>
+        <item name="android:textSize">@dimen/regular_font</item>
+        <item name="android:fontWeight">400</item>
+    </style>
+
+    <style name="TextAppearance.MovieApp.Body2" parent="Theme.Yelpo">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/regular_font</item>
+        <item name="android:fontWeight">400</item>
+    </style>
+
+</resources>
