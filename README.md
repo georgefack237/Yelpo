@@ -10,11 +10,13 @@
 ## ✨ Features
 - [x] Search for businesses by keyword.
 - [x] Search businesses by category.
+- [x] Add bussiness to favorites (work in progress).
+
 
 ## 📸 ScreenShots
 
-| <img src="app/src/main/assets/shimmer_loading.png" width="400">| <img src="app/src/main/assets/home_page.png" width="400">  |
-| <img src="app/src/main/assets/search_found.png" width="400">   | <img src="app/src/main/assets/search_not_found.png" width="400">  |
+ <img src="app/src/main/assets/shimmer_loading.png" width="400">| <img src="app/src/main/assets/home_page.png" width="400">  
+<img src="app/src/main/assets/search_found.png" width="400">   | <img src="app/src/main/assets/search_not_found.png" width="400">
 
 
 ## 🔌 Plugins
@@ -24,6 +26,7 @@
 | [**Retrofit**](https://square.github.io/retrofit/)      | HTTP Requests                                       |
 | [**Glide**](https://bumptech.github.io/glide/)          | Loading Photos                                      |
 | [**Shimmer**](https://facebook.github.io/shimmer-android/)| Loading animation                                 |
+| [**Room Library**](https://developer.android.com/jetpack/androidx/releases/room)| Loading animation           |
 
 
 ## 🤓 Author(s)
