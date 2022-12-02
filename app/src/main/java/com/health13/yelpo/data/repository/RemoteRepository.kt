@@ -1,7 +1,7 @@
 package com.health13.yelpo.data.repository
 
 import com.health13.yelpo.data.models.CategoryResponse
-import com.health13.yelpo.data.models.YelpRestaurant
+import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.data.models.YelpSearchResult
 import com.health13.yelpo.data.repository.network.NetworkInstance
 import com.health13.yelpo.utils.YELPConstants
@@ -21,7 +21,7 @@ class RemoteRepository(private val network: NetworkInstance = NetworkInstance ) 
         return network.api.searchRestaurants("Bearer ${YELPConstants.API_KEY}", "$query","New York")
     }
 
-    fun getRestaurant(id: String): Call<YelpRestaurant> {
+    fun getRestaurant(id: String): Call<YelpBusiness> {
         return network.api.getRestaurant("Bearer ${YELPConstants.API_KEY}",id)
     }
 

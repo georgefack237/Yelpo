@@ -9,9 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.health13.yelpo.R
 import com.health13.yelpo.databinding.ActivityDetailBinding
-import com.health13.yelpo.databinding.ActivityMainBinding
 import com.health13.yelpo.presentation.viewmodels.RestaurantDetailViewModel
 import com.health13.yelpo.utils.YELPConstants
 

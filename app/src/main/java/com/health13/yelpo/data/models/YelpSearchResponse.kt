@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 data class YelpSearchResult(
     @SerializedName("total") val total: Int,
-    @SerializedName("businesses") val restaurants: List<YelpRestaurant>
+    @SerializedName("businesses") val restaurants: List<YelpBusiness>
 )
 
-data class YelpRestaurant(
+data class YelpBusiness(
     val id: String,
     val name: String,
     val rating: Double,

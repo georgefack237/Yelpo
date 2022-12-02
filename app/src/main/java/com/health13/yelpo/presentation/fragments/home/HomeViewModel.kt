@@ -1,4 +1,4 @@
-package com.health13.yelpo.presentation.viewmodels
+package com.health13.yelpo.presentation.fragments.home
 
 import android.content.ContentValues
 import android.util.Log
@@ -11,7 +11,7 @@ import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.data.models.YelpSearchResult
 import com.health13.yelpo.domain.GetBusinessByCategoryUseCase
 import com.health13.yelpo.domain.GetCategoriesUseCase
-import com.health13.yelpo.domain.SearchBusinessUseCase
+import com.health13.yelpo.domain.GetRestaurantUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,28 +19,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    private val _businesses = MutableLiveData<List<YelpBusiness>>()
-    private val _isSearchResultsEmpty = MutableLiveData<Boolean>()
     private val _progressBar = MutableLiveData<Boolean>()
-    private val _errorGenericLiveData = MutableLiveData<String>()
+    private val _yelpRestaurants = MutableLiveData<List<YelpBusiness>>()
     private val _categories = MutableLiveData<List<Category>>()
     private val _categoryBusinesses =  MutableLiveData<List<YelpBusiness>>()
 
-    val businesses: LiveData<List<YelpBusiness>> = _businesses
-    val progressBar :LiveData<Boolean> = _progressBar
-    val isSearchResultsEmpty : LiveData<Boolean> = _isSearchResultsEmpty
-    val errorGenericLiveData : LiveData<String> = _errorGenericLiveData
+
+    val yelpRestaurants : LiveData<List<YelpBusiness>> = _yelpRestaurants
     val categories : LiveData<List<Category>> = _categories
+    val progressBar : LiveData<Boolean> = _progressBar
     val categoryBusinesses:LiveData<List<YelpBusiness>> = _categoryBusinesses
 
-
-    private val searchBusinessUseCase = SearchBusinessUseCase()
+    private val getRestaurantUseCase = GetRestaurantUseCase()
     private val getCategoriesUseCase = GetCategoriesUseCase()
     private val getBusinessByCategoryUseCase = GetBusinessByCategoryUseCase()
 
     init {
+        getRestaurants()
+        getCategories()
         getCategories()
     }
 
@@ -59,7 +57,8 @@ class SearchViewModel: ViewModel() {
                         Log.w(ContentValues.TAG, "Did not receive valid response body from Yelp API... exiting")
                         return
                     }
-                    _categoryBusinesses.value = response.body()!!.restaurants
+
+                    this@HomeViewModel._categoryBusinesses.value = response.body()!!.restaurants
                     _progressBar.postValue(false)
                 }
 
@@ -71,6 +70,7 @@ class SearchViewModel: ViewModel() {
             })
         }
     }
+
 
     private fun getCategories(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -95,10 +95,10 @@ class SearchViewModel: ViewModel() {
         }
     }
 
-    fun searchBusiness(query: String){
-
+    private fun getRestaurants(){
         CoroutineScope(Dispatchers.IO).launch {
-            searchBusinessUseCase.execute(query).enqueue(object :
+            _progressBar.postValue(true)
+            getRestaurantUseCase.execute().enqueue(object :
                 Callback<YelpSearchResult> {
                 override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
 
@@ -109,18 +109,20 @@ class SearchViewModel: ViewModel() {
                         return
                     }
 
-                   _businesses.value = response.body()!!.restaurants
-                    _isSearchResultsEmpty.value = response.body()!!.restaurants.isEmpty()
+                    _yelpRestaurants.value = response.body()!!.restaurants
+
                     _progressBar.postValue(false)
                 }
 
                 override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
                     Log.i(ContentValues.TAG, "onFailure $t")
 
-                    _errorGenericLiveData.postValue("An error occurred: ${t.message}")
                     _progressBar.postValue(false)
                 }
             })
+
         }
+
+
     }
 }

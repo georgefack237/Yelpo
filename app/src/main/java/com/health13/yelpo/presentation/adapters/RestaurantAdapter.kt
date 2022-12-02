@@ -14,12 +14,12 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
-import com.health13.yelpo.data.models.YelpRestaurant
+import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.presentation.activities.DetailActivity
 import com.health13.yelpo.utils.YELPConstants
 
 
-class RestaurantsAdapter(val context: Context, var restaurants:List<YelpRestaurant> = mutableListOf()) :
+class RestaurantsAdapter(val context: Context, var restaurants:List<YelpBusiness> = mutableListOf()) :
     RecyclerView.Adapter<RestaurantsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +45,7 @@ class RestaurantsAdapter(val context: Context, var restaurants:List<YelpRestaura
         private val ratingBar: RatingBar = itemView.findViewById(R.id.ratingBar)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView)
 
-        fun bind(restaurant: YelpRestaurant) {
+        fun bind(restaurant: YelpBusiness) {
             name.text = restaurant.name
             ratingBar.rating = restaurant.rating.toFloat()
             tvNumReviews.text = "${restaurant.numReviews} Reviews"
