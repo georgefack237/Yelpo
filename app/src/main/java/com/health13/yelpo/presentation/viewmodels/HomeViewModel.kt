@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.health13.yelpo.data.models.Category
 import com.health13.yelpo.data.models.CategoryResponse
-import com.health13.yelpo.data.models.YelpRestaurant
+import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.data.models.YelpSearchResult
 import com.health13.yelpo.domain.GetBusinessByCategoryUseCase
 import com.health13.yelpo.domain.GetCategoriesUseCase
@@ -22,15 +22,15 @@ import retrofit2.Response
 class HomeViewModel : ViewModel() {
 
     private val _progressBar = MutableLiveData<Boolean>()
-    private val _yelpRestaurants = MutableLiveData<List<YelpRestaurant>>()
+    private val _yelpRestaurants = MutableLiveData<List<YelpBusiness>>()
     private val _categories = MutableLiveData<List<Category>>()
-    private val _categoryBusinesses =  MutableLiveData<List<YelpRestaurant>>()
+    private val _categoryBusinesses =  MutableLiveData<List<YelpBusiness>>()
 
 
-    val yelpRestaurants : LiveData<List<YelpRestaurant>> = _yelpRestaurants
+    val yelpRestaurants : LiveData<List<YelpBusiness>> = _yelpRestaurants
     val categories : LiveData<List<Category>> = _categories
     val progressBar : LiveData<Boolean> = _progressBar
-    val categoryBusinesses:LiveData<List<YelpRestaurant>> = _categoryBusinesses
+    val categoryBusinesses:LiveData<List<YelpBusiness>> = _categoryBusinesses
 
     private val getRestaurantUseCase = GetRestaurantUseCase()
     private val getCategoriesUseCase = GetCategoriesUseCase()

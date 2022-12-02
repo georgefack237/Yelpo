@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.health13.yelpo.data.models.YelpRestaurant
+import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.domain.RestaurantDetailsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,16 +16,16 @@ import retrofit2.Response
 
 class RestaurantDetailViewModel(): ViewModel() {
 
-    private var _restaurantLiveData = MutableLiveData<YelpRestaurant>()
+    private var _restaurantLiveData = MutableLiveData<YelpBusiness>()
 
-    val restaurantLivData: LiveData<YelpRestaurant> = _restaurantLiveData
+    val restaurantLivData: LiveData<YelpBusiness> = _restaurantLiveData
     private val restaurantDetailsUseCase = RestaurantDetailsUseCase()
 
      fun getRestaurant(id: String){
         CoroutineScope(Dispatchers.IO).launch {
             restaurantDetailsUseCase.execute(id).enqueue(object :
-                Callback<YelpRestaurant> {
-                override fun onResponse(call: Call<YelpRestaurant>, response: Response<YelpRestaurant>) {
+                Callback<YelpBusiness> {
+                override fun onResponse(call: Call<YelpBusiness>, response: Response<YelpBusiness>) {
                     Log.i(ContentValues.TAG, "onResponse $response")
                     val body = response.body()
                     if (body == null) {
@@ -36,7 +36,7 @@ class RestaurantDetailViewModel(): ViewModel() {
                     _restaurantLiveData.value = response.body()
                 }
 
-                override fun onFailure(call: Call<YelpRestaurant>, t: Throwable) {
+                override fun onFailure(call: Call<YelpBusiness>, t: Throwable) {
                     Log.i(ContentValues.TAG, "onFailure $t")
                 }
             })

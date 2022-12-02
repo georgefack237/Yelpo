@@ -1,7 +1,7 @@
 package com.health13.yelpo.data.repository.network
 
 import com.health13.yelpo.data.models.CategoryResponse
-import com.health13.yelpo.data.models.YelpRestaurant
+import com.health13.yelpo.data.models.YelpBusiness
 import com.health13.yelpo.data.models.YelpSearchResult
 import retrofit2.Call
 import retrofit2.http.GET
@@ -28,7 +28,7 @@ interface YelpService {
     fun getRestaurant(
         @Header("Authorization") authHeader: String,
         @Path("id") id: String
-    ): Call<YelpRestaurant>
+    ): Call<YelpBusiness>
 
 
     @GET("categories")
