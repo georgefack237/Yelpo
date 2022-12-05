@@ -24,8 +24,7 @@ class HomeFragment : Fragment() {
     lateinit var homeViewModel: HomeViewModel
     lateinit var restaurantsAdapter: RestaurantsAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     @SuppressLint("UseRequireInsteadOfGet")
@@ -47,7 +46,7 @@ class HomeFragment : Fragment() {
 
         _binding!!.svSearch.setOnQueryTextFocusChangeListener { thisView, hasFocus ->
             if (hasFocus) {
-                thisView.clearFocus() // onResume the focus will be cleared
+                thisView.clearFocus()
                 openSearchActivity()
             }
         }
@@ -124,6 +123,8 @@ class HomeFragment : Fragment() {
         val intent = Intent(this.context, SearchActivity::class.java)
         startActivity(intent)
     }
+
+
     private fun handleProgressBar() {
         homeViewModel.progressBar.observe(viewLifecycleOwner) { isLoading ->
 

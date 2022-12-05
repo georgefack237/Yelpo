@@ -35,4 +35,5 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/restName"
         app:layout_constraintTop_toBottomOf="@+id/restName" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

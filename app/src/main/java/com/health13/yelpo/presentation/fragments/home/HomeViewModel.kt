@@ -25,8 +25,12 @@ class HomeViewModel : ViewModel() {
     private val _yelpRestaurants = MutableLiveData<List<YelpBusiness>>()
     private val _categories = MutableLiveData<List<Category>>()
     private val _categoryBusinesses =  MutableLiveData<List<YelpBusiness>>()
+    private val _errorMessage = MutableLiveData<String>()
 
 
+
+
+    val errorMessage: LiveData<String> = _errorMessage
     val yelpRestaurants : LiveData<List<YelpBusiness>> = _yelpRestaurants
     val categories : LiveData<List<Category>> = _categories
     val progressBar : LiveData<Boolean> = _progressBar
@@ -117,6 +121,7 @@ class HomeViewModel : ViewModel() {
                 override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
                     Log.i(ContentValues.TAG, "onFailure $t")
 
+                    _errorMessage.value = "No data, please check your internet connection!"
                     _progressBar.postValue(false)
                 }
             })
