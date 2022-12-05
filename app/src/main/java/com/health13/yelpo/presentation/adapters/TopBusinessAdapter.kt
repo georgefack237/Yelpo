@@ -1,4 +1,5 @@
 package com.health13.yelpo.presentation.adapters
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -18,11 +19,11 @@ import com.health13.yelpo.presentation.activities.DetailActivity
 import com.health13.yelpo.utils.YELPConstants
 
 
-class RestaurantsAdapter(val context: Context, var restaurants:List<YelpBusiness> = mutableListOf()) :
-    RecyclerView.Adapter<RestaurantsAdapter.ViewHolder>() {
+class TopBusinessAdapter(val context: Context, var restaurants:List<YelpBusiness> = mutableListOf()) :
+    RecyclerView.Adapter<TopBusinessAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_business, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.top_business_item, parent, false))
     }
 
     override fun getItemCount() = restaurants.size
@@ -35,21 +36,25 @@ class RestaurantsAdapter(val context: Context, var restaurants:List<YelpBusiness
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-        private val name: TextView = itemView.findViewById(R.id.tvBusinessName)
-        private val tvDistance: TextView = itemView.findViewById(R.id.tvDistance)
-        private val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
-        private val ratingBar: RatingBar = itemView.findViewById(R.id.businessRating)
-        private val imageView: ImageView = itemView.findViewById(R.id.imgBusiness)
+        private val name: TextView = itemView.findViewById(R.id.tvBussinessNameT)
+        private val tvDistance: TextView = itemView.findViewById(R.id.tvDistanceT)
+        private val tvAddress: TextView = itemView.findViewById(R.id.tvAddressT)
+        private val ratingBar: RatingBar = itemView.findViewById(R.id.businessRatingT)
+        private val imageView: ImageView = itemView.findViewById(R.id.businessImageT)
+        private val category: TextView= itemView.findViewById(R.id.tvCategoryT)
 
         fun bind(restaurant: YelpBusiness) {
             name.text = restaurant.name
             ratingBar.rating = restaurant.rating.toFloat()
             tvAddress.text = restaurant.location.address
             tvDistance.text = restaurant.displayDistance()
-            Glide.with(context).load(restaurant.imageUrl).apply(RequestOptions().transforms(
+            Glide.with(context).load(restaurant.imageUrl).apply(
+                RequestOptions().transforms(
                 CenterCrop(), RoundedCorners(20)
             )).into(imageView)
 
+
+            category.text = restaurant.categories[0].title
 
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)

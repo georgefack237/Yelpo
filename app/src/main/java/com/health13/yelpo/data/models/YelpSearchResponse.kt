@@ -1,5 +1,8 @@
 package com.health13.yelpo.data.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
@@ -7,6 +10,24 @@ data class YelpSearchResult(
     @SerializedName("total") val total: Int,
     @SerializedName("businesses") val restaurants: List<YelpBusiness>
 )
+
+
+@Entity
+data class Business(
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
+    val name: String,
+    val rating: Double,
+    val price: String,
+    @ColumnInfo(name = "review_count")
+    val numReviews: Int,
+    @ColumnInfo(name ="distance")
+    val distanceInMeters: Double,
+    @ColumnInfo(name ="image_url")
+    val imageUrl: String,
+    var isFavourite: Boolean
+)
+
 
 data class YelpBusiness(
     val id: String,

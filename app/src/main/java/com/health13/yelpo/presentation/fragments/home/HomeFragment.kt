@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.google.android.material.chip.Chip
 import com.health13.yelpo.R
-import com.health13.yelpo.RestaurantsAdapter
+import com.health13.yelpo.presentation.adapters.RestaurantsAdapter
 import com.health13.yelpo.databinding.FragmentHomeBinding
 import com.health13.yelpo.presentation.activities.SearchActivity
+import com.health13.yelpo.presentation.adapters.TopBusinessAdapter
 
 
 class HomeFragment : Fragment() {
@@ -23,9 +25,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     lateinit var homeViewModel: HomeViewModel
     lateinit var restaurantsAdapter: RestaurantsAdapter
+    lateinit var topBusinessAdapter:TopBusinessAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     @SuppressLint("UseRequireInsteadOfGet")
@@ -37,17 +39,17 @@ class HomeFragment : Fragment() {
      homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
-
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         restaurantsAdapter = this.context?.let { RestaurantsAdapter(it) }!!
 
+        topBusinessAdapter = this.context?.let { TopBusinessAdapter(it) }!!
+
 
         _binding!!.svSearch.setOnQueryTextFocusChangeListener { thisView, hasFocus ->
             if (hasFocus) {
-                thisView.clearFocus() // onResume the focus will be cleared
+                thisView.clearFocus()
                 openSearchActivity()
             }
         }
@@ -75,8 +77,13 @@ class HomeFragment : Fragment() {
                 populate()
             }
         }
+
         binding.businessList.adapter = restaurantsAdapter
-        binding.businessList.layoutManager = LinearLayoutManager(this.context)
+        binding.businessList.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL,false)
+
+
+        binding.topBusinesses.adapter = topBusinessAdapter
+        binding.topBusinesses.layoutManager = LinearLayoutManager(this.context)
 
 
         populateCategories()
@@ -92,6 +99,10 @@ class HomeFragment : Fragment() {
         homeViewModel.yelpRestaurants.observe(viewLifecycleOwner){
             restaurantsAdapter.restaurants = it
             restaurantsAdapter.notifyDataSetChanged()
+
+
+            topBusinessAdapter.restaurants = it
+            topBusinessAdapter.notifyDataSetChanged()
         }
 
     }
@@ -103,6 +114,9 @@ class HomeFragment : Fragment() {
         homeViewModel.categoryBusinesses.observe(viewLifecycleOwner){
             restaurantsAdapter.restaurants  = it
             restaurantsAdapter.notifyDataSetChanged()
+
+            topBusinessAdapter.restaurants = it
+            topBusinessAdapter.notifyDataSetChanged()
         }
 
 
@@ -124,6 +138,8 @@ class HomeFragment : Fragment() {
         val intent = Intent(this.context, SearchActivity::class.java)
         startActivity(intent)
     }
+
+
     private fun handleProgressBar() {
         homeViewModel.progressBar.observe(viewLifecycleOwner) { isLoading ->
 

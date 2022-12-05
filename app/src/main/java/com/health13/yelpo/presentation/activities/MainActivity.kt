@@ -2,16 +2,14 @@ package com.health13.yelpo.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.health13.yelpo.R
-import com.health13.yelpo.RestaurantsAdapter
 import com.health13.yelpo.databinding.ActivityMainBinding
-import com.health13.yelpo.presentation.viewmodels.HomeViewModel
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar!!.hide();
 
 
 
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment, R.id.favoriteFragment, R.id.settingFragment
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 

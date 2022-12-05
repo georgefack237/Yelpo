@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="8dp"
+    android:elevation="0dp"
+    android:outlineSpotShadowColor="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/businessImageT"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBussinessNameT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Sharlot's Restaurant"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/businessImageT" />
+
+        <TextView
+            android:id="@+id/tvAddressT"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="23 Street sov"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tvBussinessNameT"
+            app:layout_constraintTop_toBottomOf="@+id/tvBussinessNameT" />
+
+        <TextView
+            android:id="@+id/tvDistanceT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="2.4 Miles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/businessImageT" />
+
+        <TextView
+            android:id="@+id/tvCategoryT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Restaurant"
+            app:layout_constraintEnd_toEndOf="@+id/tvDistanceT"
+            app:layout_constraintTop_toBottomOf="@+id/tvDistanceT" />
+
+        <RatingBar
+            android:id="@+id/businessRatingT"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:theme="@style/RatingBar"
+            app:layout_constraintStart_toStartOf="@+id/tvAddressT"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddressT" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

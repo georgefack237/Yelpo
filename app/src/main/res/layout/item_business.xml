@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:background="@color/gray"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="8dp"
+    android:elevation="0dp"
+    android:outlineSpotShadowColor="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgBusiness"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBusinessName"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="18sp"
+            android:text="Some Business"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/imgBusiness"
+            app:layout_constraintTop_toBottomOf="@+id/imgBusiness" />
+
+        <RatingBar
+            android:id="@+id/businessRating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:theme="@style/RatingBar"
+            app:layout_constraintStart_toStartOf="@+id/tvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 mil"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/imgBusiness"
+            app:layout_constraintTop_toTopOf="@+id/businessRating" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="20 Streets "
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tvBusinessName"
+            app:layout_constraintTop_toBottomOf="@+id/tvBusinessName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

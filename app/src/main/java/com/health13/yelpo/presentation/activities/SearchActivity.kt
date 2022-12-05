@@ -7,8 +7,7 @@ import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
-import com.health13.yelpo.RestaurantsAdapter
+import com.health13.yelpo.presentation.adapters.RestaurantsAdapter
 import com.health13.yelpo.databinding.ActivitySearchBinding
 import com.health13.yelpo.presentation.viewmodels.SearchViewModel
 
