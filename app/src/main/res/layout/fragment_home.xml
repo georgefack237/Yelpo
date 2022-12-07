@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/svSearch"
             android:layout_width="0dp"
@@ -87,6 +88,23 @@
         </HorizontalScrollView>
 
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabPageSection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/hsvGenreList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svSearch"
+            app:tabGravity="start"
+            app:tabIndicatorColor="@color/green"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabPaddingEnd="30dp"
+            app:tabPaddingStart="30dp"
+            app:tabTextAppearance="@style/TextAppearance.MovieApp.Headline1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/topBusinesses"
             android:layout_width="0dp"
@@ -107,6 +125,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hsvGenreList" />
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pagerMovieList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/hsvGenreList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </ScrollView>

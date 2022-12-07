@@ -11,12 +11,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.chip.Chip
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.health13.yelpo.R
 import com.health13.yelpo.presentation.adapters.RestaurantsAdapter
 import com.health13.yelpo.databinding.FragmentHomeBinding
 import com.health13.yelpo.presentation.activities.SearchActivity
+import com.health13.yelpo.presentation.adapters.PagerSectionAdapter
 import com.health13.yelpo.presentation.adapters.TopBusinessAdapter
 
 
@@ -45,6 +48,8 @@ class HomeFragment : Fragment() {
         restaurantsAdapter = this.context?.let { RestaurantsAdapter(it) }!!
 
         topBusinessAdapter = this.context?.let { TopBusinessAdapter(it) }!!
+
+        binding.pagerMovieList.adapter = PagerSectionAdapter(this.activity!!.supportFragmentManager, lifecycle)
 
 
         _binding!!.svSearch.setOnQueryTextFocusChangeListener { thisView, hasFocus ->
@@ -89,6 +94,7 @@ class HomeFragment : Fragment() {
         populateCategories()
         handleProgressBar()
         populate()
+        configureTabPager(binding.tabPageSection,binding.pagerMovieList)
         return root
     }
 
@@ -105,6 +111,22 @@ class HomeFragment : Fragment() {
             topBusinessAdapter.notifyDataSetChanged()
         }
 
+    }
+
+
+
+    private fun configureTabPager(tabPagerSection: TabLayout, pagerMovieList: ViewPager2) {
+        pagerMovieList.isUserInputEnabled = false
+        TabLayoutMediator(tabPagerSection, pagerMovieList){ tab, position ->
+            when (position) {
+                0 -> {
+                    tab.setText("R.string.all_movies")
+                }
+                1 -> {
+                    tab.setText("R.string.favorite")
+                }
+            }
+        }.attach()
     }
 
 
