@@ -1,21 +1,16 @@
 package com.health13.yelpo.presentation.fragments.home
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.health13.yelpo.R
 import com.health13.yelpo.presentation.adapters.RestaurantsAdapter
 import com.health13.yelpo.databinding.FragmentHomeBinding
 import com.health13.yelpo.presentation.activities.SearchActivity
@@ -59,59 +54,16 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.categories.observe(viewLifecycleOwner) { categories ->
-            for (category in categories) {
-                val chip =
-                    layoutInflater.inflate(R.layout.item_genre_home,  binding.cgGenreList, false) as Chip
-                chip.text = category.title
-                _binding!!.cgGenreList.addView(chip as View)
-            }
-        }
-
-        // set chip group checked change listener
-        _binding!!.cgGenreList.setOnCheckedChangeListener { group, checkedId ->
-            val chip: Chip? = group.findViewById(checkedId)
-            // Responds to child chip checked
-            chip?.let { chipView ->
-                if (chipView.isChecked) {
-                    populateByCategory(chip.text.toString())
-                }
-            }
-            // All chips are unchecked returns to displaying popular movies
-            if (checkedId == -1) {
-                populate()
-            }
-        }
-
-        binding.businessList.adapter = restaurantsAdapter
-        binding.businessList.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL,false)
 
 
-        binding.topBusinesses.adapter = topBusinessAdapter
-        binding.topBusinesses.layoutManager = LinearLayoutManager(this.context)
 
-
-        populateCategories()
         handleProgressBar()
-        populate()
         configureTabPager(binding.tabPageSection,binding.pagerMovieList)
         return root
     }
 
 
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun populate(){
-        homeViewModel.yelpRestaurants.observe(viewLifecycleOwner){
-            restaurantsAdapter.restaurants = it
-            restaurantsAdapter.notifyDataSetChanged()
-
-
-            topBusinessAdapter.restaurants = it
-            topBusinessAdapter.notifyDataSetChanged()
-        }
-
-    }
 
 
 
@@ -120,40 +72,19 @@ class HomeFragment : Fragment() {
         TabLayoutMediator(tabPagerSection, pagerMovieList){ tab, position ->
             when (position) {
                 0 -> {
-                    tab.setText("R.string.all_movies")
+                    tab.text = "Default View"
                 }
                 1 -> {
-                    tab.setText("R.string.favorite")
+                    tab.text = "Map View"
                 }
             }
         }.attach()
     }
 
 
-    private fun populateByCategory(category: String){
-
-        homeViewModel.getBusinessByCategory(category)
-        homeViewModel.categoryBusinesses.observe(viewLifecycleOwner){
-            restaurantsAdapter.restaurants  = it
-            restaurantsAdapter.notifyDataSetChanged()
-
-            topBusinessAdapter.restaurants = it
-            topBusinessAdapter.notifyDataSetChanged()
-        }
 
 
 
-    }
-
-    private fun populateCategories(){
-        homeViewModel.categories.observe(viewLifecycleOwner){
-
-            for (item in it){
-                Log.e(ContentValues.TAG, "::::Category ==== ${item.title}")
-            }
-
-        }
-    }
 
 
     private fun openSearchActivity() {

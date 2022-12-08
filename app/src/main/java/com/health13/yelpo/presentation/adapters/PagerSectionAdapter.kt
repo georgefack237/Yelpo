@@ -4,10 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.health13.yelpo.presentation.fragments.DefaultView
 import com.health13.yelpo.presentation.fragments.MapsFragment
 import com.health13.yelpo.presentation.fragments.favorite.FavoriteFragment
 
-// A simple ViewPager adapter class for paging through a small, fixed number of fragments
 class PagerSectionAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
             : FragmentStateAdapter(fragmentManager,lifecycle) {
 
@@ -15,7 +15,7 @@ class PagerSectionAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> FavoriteFragment()
+            0 ->DefaultView()
             else ->MapsFragment()
         }
     }
