@@ -11,12 +11,13 @@
 - [x] Search for businesses by keyword.
 - [x] Search businesses by category.
 - [x] Add bussiness to favorites (work in progress).
+- [x] Display businesses on Google maps
 
 
 ## 📸 ScreenShots
 
  <img src="app/src/main/assets/shimmer_loading.png" width="400">| <img src="app/src/main/assets/home_page.png" width="400">  
-<img src="app/src/main/assets/search_found.png" width="400">   | <img src="app/src/main/assets/search_not_found.png" width="400">
+ <img src="app/src/main/assets/search_found.png" width="400">   | <img src="app/src/main/assets/search_not_found.png" width="400">
 
 
 ## 🔌 Plugins
